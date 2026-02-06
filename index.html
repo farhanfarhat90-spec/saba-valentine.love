@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8">
+  <title>Happy Valentine’s Day 💖</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      font-family: "Tahoma", sans-serif;
+      background: radial-gradient(circle at top, #ffafcc, #b5179e, #240046);
+      color: #fff;
+      text-align: center;
+      overflow-x: hidden;
+    }
+
+    section {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 30px;
+    }
+
+    h1 {
+      font-size: 2.3em;
+      margin-bottom: 25px;
+      text-shadow: 0 0 15px rgba(255, 182, 193, 0.6);
+    }
+
+    button {
+      background: linear-gradient(135deg, #ff4d8d, #ff758f);
+      border: none;
+      padding: 15px 40px;
+      font-size: 1.1em;
+      color: white;
+      border-radius: 35px;
+      cursor: pointer;
+      box-shadow: 0 0 20px rgba(255, 77, 141, 0.6);
+      transition: 0.3s;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .letter-box {
+      background: rgba(255, 255, 255, 0.12);
+      border-radius: 20px;
+      padding: 30px;
+      max-width: 650px;
+      box-shadow: 0 0 30px rgba(255, 182, 193, 0.3);
+      backdrop-filter: blur(6px);
+    }
+
+    .name {
+      font-size: 2em;
+      margin-bottom: 20px;
+      color: #ffe5ec;
+    }
+
+    .letter {
+      line-height: 2.3;
+      font-size: 1.15em;
+      white-space: pre-line;
+      color: #fff;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 18px;
+      max-width: 850px;
+      width: 100%;
+    }
+
+    .gallery img {
+      width: 100%;
+      border-radius: 18px;
+      box-shadow: 0 0 20px rgba(255, 182, 193, 0.4);
+      transition: transform 0.4s;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.08);
+    }
+
+    footer {
+      margin-top: 35px;
+      font-size: 1.15em;
+      color: #ffe5ec;
+    }
+
+    .heart {
+      position: fixed;
+      top: -10px;
+      font-size: 22px;
+      animation: fall linear infinite;
+      opacity: 0.8;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(110vh);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<section id="intro">
+  <h1>
+    برای کسی که فاصله<br>
+    ...نتوانست از دلم دورش کند
+  </h1>
+  <button onclick="openLetter()">بازش کن 💖</button>
+</section>
+
+<section id="letterSection" class="hidden">
+  <div class="letter-box">
+    <div class="name"> 💗 صبا جانم</div>
+    <div class="letter" id="letterText"></div>
+    <h2>Happy Valentine’s Day ❤️</h2>
+    <button onclick="openGallery()">خاطرات که باهم میسازیم 📸</button>
+  </div>
+</section>
+
+<section id="gallerySection" class="hidden">
+  <h1> 💞 حس خوب</h1>
+  <div class="gallery">
+    <img src="screen1.jpg">
+    <img src="screen2.jpg">
+    <img src="screen5.jpg">
+    <img src="screen4.jpg">
+    <img src="screen3.jpg">
+  </div>
+  <footer>
+    این فقط چند عکس است<br>
+    ❤️ اما دلیل دوست داشتنم بی‌نهایت است 
+  </footer>
+</section>
+
+<script>
+  const text = `
+در من کوچه‌ای است
+که با تو در آن نگشتم
+سفری است
+که با تو هنوز نرفته‌ام
+روزها و شب‌هایی است
+که با تو به سر نکرده‌ام
+و عاشقانه‌هایی
+...که با تو هنوز نگفته‌ام
+  `;
+
+  let index = 0;
+
+  function openLetter() {
+    document.getElementById("intro").classList.add("hidden");
+    document.getElementById("letterSection").classList.remove("hidden");
+    typeWriter();
+  }
+
+  function typeWriter() {
+    if (index < text.length) {
+      document.getElementById("letterText").innerHTML += text.charAt(index);
+      index++;
+      setTimeout(typeWriter, 65);
+    }
+  }
+
+  function openGallery() {
+    document.getElementById("letterSection").classList.add("hidden");
+    document.getElementById("gallerySection").classList.remove("hidden");
+  }
+
+  setInterval(() => {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerText = "💗";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = (Math.random() * 3 + 5) + "s";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 7000);
+  }, 450);
+</script>
+
+</body>
+</html>
